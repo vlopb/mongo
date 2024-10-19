@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Evento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Eventos por Realizar</a>
+        <a href="{{ url_for('agregar_evento') }}">Agregar Evento</a>
+        <a href="{{ url_for('eventos_realizados') }}">Eventos Realizados</a>
+        <a href="{{ url_for('calendario') }}">Calendario</a>
+    </nav>
+    <h1>Agregar Nuevo Evento</h1>
+    <form action="{{ url_for('agregar_evento') }}" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+        <br>
+        <label for="fecha">Fecha (YYYY-MM-DD):</label>
+        <input type="text" id="fecha" name="fecha" required>
+        <br>
+        <label for="categoria">Categoría:</label>
+        <input type="text" id="categoria" name="categoria" required>
+        <br>
+        <button type="submit">Agregar Evento</button>
+    </form>
+</body>
+</html>

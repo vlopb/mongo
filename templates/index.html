@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos por Realizar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Eventos por Realizar</a>
+        <a href="{{ url_for('agregar_evento') }}">Agregar Evento</a>
+        <a href="{{ url_for('eventos_realizados') }}">Eventos Realizados</a>
+        <a href="{{ url_for('calendario') }}">Calendario</a>
+    </nav>
+    <h1>Eventos por Realizar</h1>
+    <ul>
+        {% for evento in eventos %}
+            <li>{{ evento.fecha.strftime('%Y-%m-%d') }}: {{ evento.titulo }} [{{ evento.categoria }}]
+                <form action="{{ url_for('alternar_estado', evento_id=evento._id) }}" method="post" style="display:inline;">
+                    <button type="submit">Marcar como Realizado</button>
+                </form>
+                <form action="{{ url_for('eliminar_evento', evento_id=evento._id) }}" method="post" style="display:inline;">
+                    <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este evento?')">Eliminar</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No hay eventos por realizar.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
